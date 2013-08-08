@@ -3,6 +3,8 @@ Imaper
 
 This package allows you to easily access any IMAP mailbox with just a few lines of code.
 
+**Bitbucket Repo:** https://bitbucket.org/dhrrgn/imaper
+
 .. code-block:: python
 
     from imaper import Imaper
