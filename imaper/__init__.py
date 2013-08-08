@@ -11,7 +11,7 @@ class Imaper:
     :param username: The username to login with.
     :param password: The password to use.
     :param port: Server port (default=143)
-    :param port: Use SSL? (default=False)
+    :param ssl: Use SSL? (default=False)
     :param connect: Whether to connect immediately (default=True)
     :param folder: Which folder to connect to (default='INBOX')
     """
