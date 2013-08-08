@@ -32,7 +32,20 @@ This package allows you to easily access any IMAP mailbox with just a few lines 
     messages[0].delete()
 
 
-.. toctree::
-   :maxdepth: 4
+:mod:`imaper` Package
+==============
 
-   imaper
+.. automodule:: imaper
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`parser` Module
+--------------------
+
+.. automodule:: imaper.parser
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
