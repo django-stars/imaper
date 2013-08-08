@@ -2,7 +2,9 @@
 
 IMAP made easy.
 
-This library is inspired by [Imbox](https://github.com/martinrusev/imbox).
+**Documentation:** [https://imaper.readthedocs.org/en/latest/](https://imaper.readthedocs.org/en/latest/)
+
+*This library is inspired by [Imbox](https://github.com/martinrusev/imbox).*
 
 ## Example
 
@@ -36,7 +38,7 @@ This library is inspired by [Imbox](https://github.com/martinrusev/imbox).
 
 ### Install From PyPi
 
-*Coming soon!*
+*Coming soon!* - Once it is tagged for release it will be available.
 
 ### Install From Git
 
