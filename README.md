@@ -2,7 +2,7 @@
 
 IMAP made easy.
 
-**License:** MIT
+**License:** MIT  
 **Documentation:** [http://pythonhosted.org/imaper/](http://pythonhosted.org/imaper/)
 
 *This library is inspired by [Imbox](https://github.com/martinrusev/imbox).*
