@@ -7,7 +7,7 @@ setup(
     author_email="dan@dhorrigan.com",
     url="https://bitbucket.org/dhrrgn/imaper",
     description="IMAP made easy.",
-    long_description="See documentation at https://imaper.readthedocs.org",
+    long_description="See documentation at http://pythonhosted.org/imaper/",
     license='MIT',
     packages=["imaper"],
     install_requires=[
