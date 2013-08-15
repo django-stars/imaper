@@ -2,6 +2,7 @@
 
 IMAP made easy.
 
+**License:** MIT
 **Documentation:** [https://imaper.readthedocs.org/en/latest/](https://imaper.readthedocs.org/en/latest/)
 
 *This library is inspired by [Imbox](https://github.com/martinrusev/imbox).*
@@ -38,7 +39,7 @@ IMAP made easy.
 
 ### Install From PyPi
 
-*Coming soon!* - Once it is tagged for release it will be available.
+    pip install imaper
 
 ### Install From Git
 
