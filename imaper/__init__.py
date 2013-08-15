@@ -102,7 +102,7 @@ class Message(object):
     def __init__(self, mb, **properties):
         self.mb = mb
         self.__dict__.update(properties)
-        self.parse_flags()
+        self._parse_flags()
 
     def keys(self):
         """Gets all the property names as a list.
@@ -143,7 +143,7 @@ class Message(object):
         """
         resp = self.mb.server.add_flags(self.msgid, flags)
         self.flags = resp.get(1, (None,))
-        self.parse_flags()
+        self._parse_flags()
 
     def remove_flags(self, flags):
         """Removes the given flags to this message
@@ -153,9 +153,9 @@ class Message(object):
         """
         resp = self.mb.server.remove_flags(self.msgid, flags)
         self.flags = resp.get(1, (None,))
-        self.parse_flags()
+        self._parse_flags()
 
-    def parse_flags(self):
+    def _parse_flags(self):
         """Parses the flags tuple into more usable properties."""
         self.flagged = FLAGGED in self.flags
         self.deleted = DELETED in self.flags
