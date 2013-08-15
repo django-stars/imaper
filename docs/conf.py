@@ -9,7 +9,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 project = u'Imaper'
 copyright = u'2013, Daniel Horrigan'
-version = '0.0.1'
+version = '1.0.0'
 release = ''
 
 exclude_patterns = ['_build']

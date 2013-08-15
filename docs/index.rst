@@ -1,6 +1,8 @@
 Imaper
 ==========
 
+Version: **1.0.0**
+
 This package allows you to easily access any IMAP mailbox with just a few lines of code.
 
 **Bitbucket Repo:** https://bitbucket.org/dhrrgn/imaper
@@ -49,5 +51,3 @@ This package allows you to easily access any IMAP mailbox with just a few lines 
     :members:
     :undoc-members:
     :show-inheritance:
-
-

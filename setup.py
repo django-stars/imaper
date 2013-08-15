@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="imaper",
-    version="0.0.1",
+    version="1.0.0",
     author="Dan Horrigan",
     author_email="dhorrigan@ag.com",
     description=("IMAP made easy."),

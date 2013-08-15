@@ -1,8 +1,8 @@
 from imapclient import IMAPClient, DELETED, SEEN, FLAGGED
 from .parser import parse_email
 
+__version__ = "1.0.0"
 __all__ = ['Imaper', 'Message']
-
 
 class Imaper:
     """Connects to the IMAP server with the given information.
