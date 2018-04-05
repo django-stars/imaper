@@ -27,9 +27,11 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
-import StringIO
+from io import StringIO, BytesIO
+import base64
 import email
 from email.header import decode_header
+import chardet
 
 __all__ = ['parse_email']
 
@@ -43,13 +45,17 @@ def _decode_mail_header(value, default_charset='us-ascii'):
     else:
         for index, (text, charset) in enumerate(headers):
             try:
-                headers[index] = text.decode(
-                    charset or default_charset, 'replace')
+                headers[index] = text
             except LookupError:
                 # if the charset is unknown, force default
                 headers[index] = text.decode(default_charset, 'replace')
 
-        return u"".join(headers)
+        def decode_bytes(header):
+            if type(header) is bytes:
+                encoding = chardet.detect(header)['encoding']
+                return header.decode(encoding)
+            return header
+        return ''.join(map(decode_bytes, headers))
 
 
 def _get_mail_addresses(message, header_name):
@@ -77,22 +83,31 @@ def _parse_attachment(message_part):
 
     if dispositions[0].lower() == "attachment":
         file_data = message_part.get_payload(decode=True)
-
         attachment = {
             'content-type': message_part.get_content_type(),
             'size': len(file_data),
-            'content': StringIO.StringIO(file_data)
+            'content': BytesIO(file_data)
         }
-
         for param in dispositions[1:]:
-            name, value = param.split("=")
+            params = param.split("=", 1)
+            name = params[0]
+            value = params[1]
             name = name.lower()
 
             if 'file' in name:
+                filename = message_part.get_filename()
+                if decode_header(filename)[0][1] is not None:
+                    value = decode_header(filename)[0][0].decode(decode_header(filename)[0][1])
                 attachment['filename'] = value
 
             if 'create-date' in name:
                 attachment['create-date'] = value
+
+        if not attachment.get('filename') and message_part.get_filename():
+            filename = message_part.get_filename()
+            if filename.lower().startswith('=?utf-8?'): # I hate microsoft
+                decoded_filename = base64.b64decode(filename[10:]).decode()
+                attachment['filename'] = decoded_filename
 
         return attachment
 
@@ -141,7 +156,7 @@ def parse_email(raw_email):
                              'Content-Type']
 
     parsed_email['headers'] = []
-    for key, value in email_dict.iteritems():
+    for key, value in email_dict.items():
         if key in value_headers_keys:
             valid_key_name = key.lower()
             parsed_email[valid_key_name] = _decode_mail_header(value)
